@@ -1,0 +1,170 @@
+*{
+    box-sizing: border-box;
+}
+    
+.header{
+    padding: 30px;
+    background-color: white;
+    
+}
+
+/*///////////////////////////////////////*/
+.toggle-btn{
+    margin-left: 30px;
+    border: none;
+    border-radius: 25px;
+}
+.dark-mode{
+    background-color: rgb(49, 45, 45);
+    color:aliceblue;
+}
+
+.dark-mode .header{
+    background-color: rgb(49, 45, 45);
+}
+
+.dark-mode .toggle-btn{
+    color:aliceblue;
+    background-color: black;
+}
+
+.dark-mode .button{
+    color:aliceblue;
+    background-color: black;
+}
+
+.dark-mode .login_btn{
+    color:aliceblue
+}
+
+.dark-mode .Profile_opt{
+    color:aliceblue
+}
+
+.dark-mode .CampaignDesc{
+    color: aliceblue;
+}
+
+.dark-mode .footer{
+    color: aliceblue;
+    background-color: rgb(49, 45, 45);
+}
+
+.dark-mode .p_button{
+    color:aliceblue;
+    background-color: black;
+}
+
+.dark-mode .form-popup{
+    background-color: rgb(49, 45, 45);
+}
+
+.button{
+    width: 10%;
+    margin-left: 30px;
+    border-radius: 25px;
+    border: none;
+    
+}
+
+.info_body{
+    color: white;
+    background-image: url(background_img.png) ;
+    background-size: cover;
+    background-position: center;  
+    
+}
+
+body{
+    margin: 0;
+    
+}
+
+.login{
+    color: rgb(0, 0, 0);
+    margin-top: -2%;
+    padding-left: 90%;
+}
+
+.login_btn{
+    border: none;
+    background: none;
+}
+
+.Profile_opt{
+    border: none;
+    background: none;
+    font-size: 30px;
+}
+
+.p_button{
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+
+}
+
+.form-container{
+    text-align: center;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+    width: 12%;
+    display: none;
+    position: fixed;
+    background-color: rgb(197, 197, 197);
+    border: 2px solid grey;
+    border-radius: 10%;
+    top: 10;
+    right: 15px;
+    padding: 20px;
+    z-index: 9;
+}
+
+h2{
+    padding-left: 50px;
+}
+
+p{
+    padding: 50px;
+    text-align: center;
+}
+.newsletter{
+    padding: 70px;
+}
+
+.newsletter_btn{
+    
+    width: 10%;
+}
+
+img{
+    height: 100px;
+    width: 100px;
+}
+
+.privacy_links{
+    padding-left: 85%;
+    padding-bottom: 2%;
+    
+}
+
+.footer{
+    padding: 30px;
+    text-align: left;
+    background-color: rgb(224, 224, 224);
+    width: 100%;
+    bottom: 0;
+    position: relative; /* maybe relative*/
+}
+
+@media screen and (max-width:1200px){
+    .footer{
+        background-color: rgb(224, 224, 224);
+        flex-direction: column;
+        height: auto;
+        bottom: 0;
+        
+    }
+}

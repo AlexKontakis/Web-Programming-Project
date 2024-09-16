@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Furniture</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../Static/Login_Page.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+         
+
+        <!-- Javascript -->
+        <script src="../Scripts/Profile_options_form.js"></script>
+        
+
+    </head>
+
+    <body>        
+        <div class="mainrow">
+            <form action="/LoginUser" method="POST" class="sideleft">
+                <div >
+                            
+                    <h1>LOGIN</h1>
+                    <br><br><br><br><br>
+                    <div class="sign_in">
+                        <label>Username</label>
+                        <br>
+                        <input type="text" class="field" name="username_L" placeholder="Username" id="L_user">
+                        <br><br>
+                        <label>Password</label>
+                        <br>
+                        <input type="text" class="field" name="password_L" placeholder="Password" id="L_pass">
+                        <br><br><br>
+                        <input type="submit" class="button" value="Login" />
+                        <br><br><br><br><br><br><br><br><br><br>             
+                    </div>
+                    <div class="back">
+                        <button type="button" class="back_btn" onclick="navigateTo('/')">Back</button>
+                    </div>
+                            
+                </div>
+            </form>     
+
+            <form action="/SignUpUser" method="POST" class="sideright">
+                <div>
+                    <h1>SIGN UP</h1>
+                    <br><br><br><br><br>
+                    <div class="sign_up">
+                        <label>Username</label>
+                        <br>
+                        <input type="text" class="field" placeholder="Username" name="Username0" id="S_user">
+                        <br><br>   
+                        <label>Email</label>
+                        <br>
+                        <input type="text" class="field" placeholder="@example.com" name="Email0" id="S_email">
+                        <br><br>
+                            
+                        <label>Password</label>
+                        <br>
+                        <input type="text" class="field" placeholder="Password" name="Password0" id="S_pass">
+                        <br><br>
+    
+                        <label>Confirm Password</label>
+                        <br>
+                        <input type="text" class="field" placeholder="Confirm-Password" name="C_Password" id="C_pass">
+                        <br><br><br>
+                            
+                        <input type="submit" value="Sing-Up"/>
+                        <br><br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+              
+            </form>
+                
+        </div>
+            
+       
+
+        <script>
+            function navigateTo(page) {
+              window.location.href = page;
+            }
+        </script>
+        
+        <div class="footer">
+            <img src="../Static/Logo.png">
+            &copy;
+            <a href="http://www.ds.unipi.gr/" target="_blank">
+                DS_UNIPI</a>. All rights reserved.
+            <div class="info">
+                📞Phone: 999-999-99
+                📧Email: furniture@mail.com
+            </div>
+        </div>
+        <div ng-view></div>
+    </body>
+
+    
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Furniture</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../Static/History.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+         
+
+        <!-- Javascript -->
+        <script src="../Scripts/Profile_options_form.js"></script>
+        
+
+    </head>
+    
+    <body ng-app="myApp" ng-controller="myController">
+        <div class="header">
+            <button type="button" class="button" onclick="navigateTo('/')">Home</button> 
+            <button type="button" class="button" onclick="navigateTo('/events')">Events </button> 
+            <button type="button" class="button" onclick="navigateTo('/info')">Info</button> 
+            <button type="button" class="button"  onclick="navigateTo('/history')">History</button>
+            <!--Dark Mode button-->
+            <button type="button" class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+            <div class="login">
+                <button type="button" class="login_btn" onclick="navigateTo('/login')">{{sessionValue}}</button>
+                <button type="button" class="Profile_opt" onclick="showProfileOptions()">...</button> </button>
+            </div>
+
+            <!-- Profile options Form -->
+            <div class="form-popup" id="opt_myForm">
+                <form class="form-container" >
+                  
+                  <div id="option_form">
+                    <button type="button" class="p_button" onclick="navigateTo('/profile')">Profile</button><br><br>
+                    <button type="button" class="p_button" onclick="navigateTo('/login')">Sign in with different account</button><br><br><br><br>
+                    <button type="button" class="p_button" onclick="navigateTo('/logout')">Logout</button>
+                  </div>
+              
+                </form>
+            </div>
+            
+        </div>
+        <br><br>
+        
+        
+        <div class="class_btns"> 
+            <button type="button" class="btns" ng-click="changeTemplate('history')">History </button> <!--changes from history to reservations template-->
+            <button type="button" class="btns" ng-click="changeTemplate('reservations')">Reservations </button> <!--changes from reservations to history template-->
+        </div>
+
+        <!--shows each template-->
+        <div ng-include="currentTemplate"></div>
+
+        <!--history template-->
+        <script type="text/ng-template" id="history">
+            <table>
+                <thead>
+                    <tr>
+                        <th><h3>Event Id</h3></th>
+                        <th><h3> Event Title</h3></th>
+                        <th><h3>State</h3></th>
+                        <th><h3>Description</h3></th>
+                        <th><h3>Date</h3></th>
+                        <th><h3>Location</h3></th>
+                        <th><h3>Reviews</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {{tableRowsHistory}}
+                    
+                </tbody>
+            </table>
+
+            <script>
+                //Dark Mode
+                const toggleButton = document.getElementById('dark-mode-toggle');
+                const prefersDarkMode = localStorage.getItem('darkMode');
+
+                if (prefersDarkMode === 'true') {
+                    document.body.classList.add('dark-mode');
+                }
+
+                function toggleDarkMode(){
+                    var body = document.body;
+                    body.classList.toggle("dark-mode");
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                }    
+            </script>
+        </script>
+
+        <!--reservations template-->
+        <script type="text/ng-template" id="reservations">
+            <table>
+                <thead>
+                    <tr>
+                        <th><h3>Event id</h3></th>
+                        <th><h3>Event Title</h3></th>
+                        <th><h3>Email</h3></th>
+                        <th><h3>Card Type</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {{tableRowsReservations}}
+                    
+                </tbody>
+            </table>
+            <script>
+                //Dark Mode
+                const toggleButton = document.getElementById('dark-mode-toggle');
+                const prefersDarkMode = localStorage.getItem('darkMode');
+
+                if (prefersDarkMode === 'true') {
+                    document.body.classList.add('dark-mode');
+                }
+
+                function toggleDarkMode(){
+                    var body = document.body;
+                    body.classList.toggle("dark-mode");
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                }
+            </script>
+        </script>
+
+        <script>
+            angular.module('myApp', [])
+            .controller('myController', ['$scope', function($scope) {
+                
+                $scope.currentTemplate = 'history'; // Initial template URL
+
+                $scope.changeTemplate = function(templateUrl) {
+                $scope.currentTemplate = templateUrl; // Update the current template URL
+                };
+            }]);
+
+            
+           
+        
+            function navigateTo(page) {
+            window.location.href = page;
+            }
+
+            var sessionValue = '{{sessionValue}}';
+            var button = document.getElementById("myButton");
+            if(sessionValue == '{{sessionValue}}'){
+                button.innerText = "👤Sign-in/Login";
+            }
+            else{
+                button.innerText = sessionValue;
+            }
+
+            
+
+        </script>
+        
+        
+        
+         
+
+
+        
+        
+       
+        
+        
+
+
+        <div class="footer">
+            <img src="../Static/Logo.png">
+            &copy;
+            <a href="http://www.ds.unipi.gr/" target="_blank">
+                DS_UNIPI</a>. All rights reserved.
+            <div class="info">
+                📞Phone: 999-999-99
+                📧Email: furniture@mail.com
+            </div>
+        </div>
+
+        <div ng-view></div>
+    </body>
+    
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Furniture</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../Static/Home_Page.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+         
+
+        
+        
+        <style>
+            .user{
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            .logout_btn{
+                border: none;
+                border-radius: 25px;
+                width: 50%;
+                margin-left: -15px;
+            }
+            
+        </style>
+
+    </head>
+    
+    <body>
+        <div class="header">
+            <button type="button" class="button" onclick="navigateTo('/admin')">Home</button> 
+            <button type="button" class="button" onclick="navigateTo('/user_mng')">User Management </button> 
+            <button type="button" class="button" onclick="navigateTo('/event_mng')">Event Management </button> 
+            <button type="button" class="button"  onclick="navigateTo('/info_mng')">Info Management </button>
+            <!--Dark Mode button-->
+            <button type="button" class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+            <div class="login">
+                <label class="user" >Admin</label><br>
+                <button type="button" class="logout_btn"  onclick="navigateTo('/logout')"> Logout </button>
+            </div>
+
+            
+            
+        </div>
+        
+        <div class="carousel_slide">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                     <img src="../Static/Img1.jpg" >
+                     
+                     <div class="carousel-caption">
+                        <h1>Design</h1>
+                        <p>Stay up to date with the latest furniture trends</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                     <img src="../Static/Img2.jpg">
+                     
+                     <div class="carousel-caption">
+                        
+                        <h1>Comfort</h1>
+                        <p>Enjoy a comfortable environment</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../Static/Img3.jpg">
+                      
+                      <div class="carousel-caption">
+                        
+                        <h1>Homey</h1>
+                        <p>Makes your every place like home</p>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
+            </div>
+        </div>
+
+        <p>
+            
+        </p>
+        <script>
+            function navigateTo(page) {
+              window.location.href = page;
+            }
+
+            //Dark Mode
+            const toggleButton = document.getElementById('dark-mode-toggle');
+            const prefersDarkMode = localStorage.getItem('darkMode');
+
+            if (prefersDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+
+            function toggleDarkMode(){
+                var body = document.body;
+                body.classList.toggle("dark-mode");
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+            }
+            
+        </script>
+        
+        
+
+
+        <div class="footer">
+            <img src="../Static/Logo.png">
+            &copy;
+            <a href="http://www.ds.unipi.gr/" target="_blank">
+                DS_UNIPI</a>. All rights reserved.
+            <div class="info">
+                📞Phone: 999-999-99
+                📧Email: furniture@mail.com
+            </div>
+        </div>
+
+        <div ng-view></div>
+    </body>
+    
+</html>

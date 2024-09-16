@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Furniture</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../Static/Event_Template.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+         
+
+        <!-- Javascript -->
+        <script src="../Scripts/Event_Template.js"></script>
+        
+        <script src="../Scripts/Profile_options_form.js"></script>
+        
+
+    </head>
+    
+    <body>
+        <div class="header">
+            <button type="button" class="button" onclick="navigateTo('/')">Back </button> 
+            <!--Dark Mode button-->
+            <button type="button" class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+            
+            <div class="login">
+                <button type="button" class="login_btn" id="myButton" onclick="navigateTo('/login')"></button>
+                <button type="button" class="Profile_opt" onclick="showProfileOptions()">...</button> </button>
+                
+            </div>
+
+            <!-- Profile options Form -->
+            <div class="opt_form_popup" id="opt_myForm">
+                <form class="opt_form_container" >
+                  
+                  <div id="option_form">
+                    <button type="button" class="p_button" onclick="navigateTo('/profile')">Profile</button><br><br>
+                    <button type="button" class="p_button" onclick="navigateTo('/login')">Sign in with different account</button><br><br><br><br>
+                    <button type="button" class="p_button" onclick="navigateTo('/logout')">Logout</button>
+                  </div>
+              
+                </form>
+            </div>
+        </div>
+        
+        <h1 id="E_Title">Event Title</h1>
+        <br><br><br>
+        
+        <br><br>
+        <p>
+            {{sessionDescription}}
+        </p>
+
+        
+        
+        
+        <div class="radio_btn">
+            <form>
+                
+                <div class="droplist">
+                    <input type="radio" id="Normal" name="ticket" value="Normal">
+                    <label for="Normal">Normal</label> <label name="Normal_price" id="Nprice">{{sessionNormalPrice}}</label>&#8364;
+                    <select name="normal_tickets" id="normal_tickets">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                
+                <div class="droplist">
+                    <input type="radio" id="VIP" name="ticket" value="VIP">
+                    <label for="VIP">VIP</label> <label name="VIP_price" id="Vprice">{{session VipPrice}}</label>&#8364;
+                    <select name="vip_tickets" id="vip_tickets" >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="droplist">
+                    <input type="radio" id="Special_Needs" name="ticket" value="Special_Needs">
+                    <label for="Special_Needs">Special Needs</label> <label name="Special_price" id="Sprice">{{sessionSpecialPrice}}</label>&#8364;
+                    <select name="special_tickets" id="special_tickets" >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </form>
+
+            <button type="button" class="add_btn" onclick="add_ticket()">Add Ticket</button>
+            <button type="button" class="add_btn" onclick="clear_ticket()">Clear</button>
+            <div class="reservation_info" id="res_info">
+                <label id="lbl1">N:0</label>
+                <label id="lbl2">V:0</label>
+                <label id="lbl3">S:0</label><br>
+                Total Tickets:<label id="lblTotal" name="totalTickets" value=""></label>
+            </div>
+        
+            
+        </div>
+        <br><br><br><br><br>
+        
+        <label class="date">{{sessionDate}}</label>
+
+        <button type="button" class="Reservation" onclick="showInputFields()">Reservation</button> 
+
+         <!-- First Form -->
+         <div class="form-popup" id="myForm">
+            <form class="form-container" action="/GetParticipants" method="POST">
+                <h1>Participant Info</h1>
+                <div id="inputContainer"> </div>
+                <input type="submit" value="Save Info"/><br>
+                <button class="back_btn" onclick="hideForm()">←</button>
+                <label for="myInput" class="Total_amount">Total amount(€):</label>
+                <input type="text" name="Amount" id="amountField" class="amount_inputfield" disabled></input>
+                <button class="pay_btn" onclick="paymentField()" >Payment</button>
+            </form>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="form-popup" id="paymentForm">
+            <form class="form-container" action="/CreateReservation" method="Post">
+                <h1>Payment Info</h1>
+                <div id="inputContainer01"> </div> 
+                <label class="popuplabel">Email:</label>
+                <input type="text" name="payment_email" id="payment_mail"></input>
+                <br>
+                <input type="radio" id="visa" name="cardType" value="Visa">
+                <label for="visa">Visa</label><br>
+                <input type="radio" id="mastercard" name="cardType" value="Master Card">
+                <label for="mastercard">Master Card</label><br>
+                <input type="radio" id="paypal" name="cardType" value="PayPal">
+                <label for="paypal">PayPal</label>
+                
+                <br>
+                <label class="popuplabel">Card Number:</label>
+                <input type="text" name="card_number" id="card_num"></input>
+                <br>
+
+                <label class="popuplabel">Verification code:</label>
+                <input type="text" name="Verification" id="verify"></input>
+                <button class="payment_btn" onclick="RandomNum()">Generate</button>
+                <br>
+                
+                <button class="back_btn" onclick="hidePayForm()">←</button>
+                <div class="confirm">
+                    <button type="submit" class="confirm_btn" >Confirm</button>
+                </div>
+                
+
+                
+
+
+            </form>
+        </div>
+
+        <script>
+            function navigateTo(page) {
+              window.location.href = page;
+            }
+            
+            var sessionValue = '{{sessionValue}}';
+            var button = document.getElementById("myButton");
+            button.innerText = sessionValue;
+            
+            var sessionTitle = '{{sessionTitle}}'
+            var h1 = document.getElementById("E_Title");
+            h1.innerText = sessionTitle;
+            
+            function hideForm(){
+                document.getElementById("myForm").style.display = "none"; 
+                event.preventDefault();
+            }
+            function paymentField(){
+                document.getElementById("myForm").style.display = "none";
+                document.getElementById("paymentForm").style.display = "block";
+                event.preventDefault();
+            }
+            var randomNumber = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+            function RandomNum(){
+                
+                alert(randomNumber);
+                event.preventDefault();
+            }
+
+            function hidePayForm(){
+                document.getElementById("paymentForm").style.display = "none"; 
+                document.getElementById("myForm").style.display = "block";
+                event.preventDefault();
+            }
+            
+            function Confirm(){
+                //checks if verification code and card number are valid
+                var code = document.getElementById("verify").value;
+                var card = document.getElementById("card_num").value;
+
+                //take the id of card type radio button to check if one of them is checked
+                var card_type0 = document.getElementById("visa");
+                var card_type1 = document.getElementById("mastercard");
+                var card_type2 = document.getElementById("paypal");
+
+                //checks if the email is valid
+                var mailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  //checks if the pattern is example@example.example
+                var pay_mail = document.getElementById("payment_mail").value;
+                //card must be 4 digit number
+                var pattern = /^\d{4}$/;
+                //checks if the payment info is valid
+                if(parseInt(code) == randomNumber){
+                    if(card_type0.checked || card_type1.checked || card_type2.checked){
+                        if(pattern.test(card)){
+                            if(mailpattern.test(pay_mail)){
+                                document.getElementById("paymentForm").style.display = "none";
+                                event.preventDefault();
+                            }
+                            else{
+                                alert("No email address was given");
+                                event.preventDefault();
+                            }
+                        }
+                        else{
+                            alert("Invalid card number")
+                            event.preventDefault();
+                        }
+                    }
+                    else{   
+                        alert("No card type was selected");
+                        event.preventDefault();
+                    }
+                }
+                else{
+                    alert("Incorrect varification number");
+                    event.preventDefault();
+                }
+            }   
+
+
+            //Dark Mode
+            const toggleButton = document.getElementById('dark-mode-toggle');
+            const prefersDarkMode = localStorage.getItem('darkMode');
+
+            if (prefersDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+
+            function toggleDarkMode(){
+                var body = document.body;
+                body.classList.toggle("dark-mode");
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+            }
+
+            
+            
+
+
+        </script>
+    
+        <div class="footer">
+            <img src="../Static/Logo.png">
+            &copy;
+            <a href="http://www.ds.unipi.gr/" target="_blank">
+                DS_UNIPI</a>. All rights reserved.
+            <div class="info">
+                📞Phone: 999-999-99
+                📧Email: furniture@mail.com
+            </div>
+        </div>
+
+        <div ng-view></div>
+    </body>
+    
+</html>
